@@ -70,7 +70,18 @@ public class Main {
 		 case 3:
 		 {
 			 System.out.println("Enter which book to borrow title");
-			 String  bookTitle  = scanner.nextLine();
+			 String  bookDetailsString  = scanner.nextLine();
+			 String[]  details = bookDetailsString.split(",");		 
+			 		 
+			 Book book = new Book(details[0], details[1]);
+			 
+			 if (listBooks.contains(book)) {
+				 Book issueBook = listBooks.get( listBooks.indexOf(book));
+				 //check whether it's in circulation or not
+				 if ( ! issueBook.isInCirculation() )
+					 issueBook.setInCirculation(true);
+			 }
+					 
 			 
 			 lmsUtils.showOptions();
 			 option = scanner.nextInt();
